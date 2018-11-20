@@ -1,0 +1,1 @@
+export const defaultHeaders = 'Origin, X-Yeti-Service, X-Requested-With, x-access-token, Content-Type, Accept';

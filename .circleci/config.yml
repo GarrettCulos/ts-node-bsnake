@@ -1,0 +1,62 @@
+# # Javascript Node CircleCI 2.0 configuration file
+# #
+# # Check https://circleci.com/docs/2.0/language-javascript/ for more details
+# #
+# version: 2
+# jobs:
+#   build-job:
+#     docker:
+#       # specify the version you desire here
+#       - image: circleci/node:7.10
+
+#     working_directory: ~/repo
+
+#     steps:
+#       - checkout
+#       # Download and cache dependencies
+#       - restore_cache:
+#           keys:
+#           - v1-dependencies-{{ checksum "package.json" }}
+#           # fallback to using the latest cache if no exact match is found
+#           - v1-dependencies-
+
+#       - run:
+#           name: Test prep
+#           command: |
+#             npm install
+#             cp ./src/database/config.default.ts ./src/database/config.ts
+#             cp ./.env.example ./.env
+
+#       - save_cache:
+#           paths:
+#             - node_modules
+#           key: v1-dependencies-{{ checksum "package.json" }}
+
+#       - run: npm run tslint
+#       # - run: npm test
+#       # - run: npm run build
+
+#   deploy-job:
+#     docker:
+#       - image: circleci/ruby:2.4-node
+#     working_directory: ~/repo
+#     steps:
+#       - checkout
+#       - run:
+#           name: Bundle Install
+#           command: bundle check || bundle install
+#       - run:
+#           name: Deploy to server (cap settings)
+#           command: bundle exec cap production deploy
+
+# workflows:
+#   version: 2
+#   build-deploy:
+#     jobs:
+#       - build-job
+#       - deploy-job:
+#           requires:
+#             - build-job
+#           filters:
+#             branches:
+#               only: master

@@ -1,0 +1,11 @@
+{
+    "apps" : [{
+      "name" : "yeti.snake",
+      "script" : "dist/server.js",
+      "watch" : true,
+      "env" : {
+        "NODE_ENV" : "production"
+      },
+      "max_restarts" : 10
+    }]
+}
