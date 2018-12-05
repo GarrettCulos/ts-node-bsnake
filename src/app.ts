@@ -18,7 +18,7 @@ dotenv.config({ path: '.env' });
 const app = express();
 
 // Express configuration
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 
 app.use(compression());
 app.use(bodyParser.json());
@@ -32,7 +32,7 @@ app.options(`${basePath}/*`, middleware.validOptions);
 
 app.use(middleware.addCORS);
 
-router.move.snakeRoutes(basePath, app);
+router.move.moveRoutes(basePath, app);
 
 app.use((req, res) => {
   res.status(400).send({ message: 'Invalid api call' });

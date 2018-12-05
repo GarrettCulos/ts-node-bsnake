@@ -18,14 +18,9 @@ export function errorHandler(res: Response, { status, message, reason, source, d
 }
 
 class SuccessHandlerInput {
-  data?: any;
-  message?: string;
+  response?: any;
   status?: number = 200;
 }
-export function successHandler(res: Response, { data, message, status }: SuccessHandlerInput): Response {
-  const response: any = {};
-  response.status = status;
-  response.data = data;
-  response.message = message ? message : undefined;
+export function successHandler(res: Response, { response, status }: SuccessHandlerInput): Response {
   return res.status(status).send(response);
 }
